@@ -204,11 +204,17 @@ function App(): React.JSX.Element {
               />
               <View style={styles.buttons}>
                 <TouchableOpacity
-                  onPress={() => openWebsite('https://www.google.com')}>
+                  onPress={() =>
+                    openWebsite(
+                      'https://www.instagram.com/p/CqwvYISNV2w/?img_index=1',
+                    )
+                  }>
                   <Text style={styles.links}>Read more</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={() => openWebsite('https://www.google.com')}>
+                  onPress={() =>
+                    openWebsite('https://www.instagram.com/eduardojpanzo/')
+                  }>
                   <Text style={styles.links}>Follow me</Text>
                 </TouchableOpacity>
               </View>
