@@ -8,13 +8,14 @@
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
-  Button,
   Image,
+  Linking,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   useColorScheme,
   useWindowDimensions,
   View,
@@ -83,6 +84,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  links: {
+    padding: 6,
+    borderRadius: 2,
+    backgroundColor: '#5a5402',
+    fontWeight: '600',
+    fontSize: 16,
+  },
   contact: {
     marginHorizontal: 20,
     marginBottom: 10,
@@ -115,6 +123,9 @@ function App(): React.JSX.Element {
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+  const openWebsite = (website: string) => {
+    Linking.openURL(website);
   };
 
   return (
@@ -192,8 +203,14 @@ function App(): React.JSX.Element {
                 source={require('./assets/js.jpg')}
               />
               <View style={styles.buttons}>
-                <Button title="Read more" />
-                <Button title="follow me" />
+                <TouchableOpacity
+                  onPress={() => openWebsite('https://www.google.com')}>
+                  <Text style={styles.links}>Read more</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => openWebsite('https://www.google.com')}>
+                  <Text style={styles.links}>Follow me</Text>
+                </TouchableOpacity>
               </View>
             </View>
           </Section>
