@@ -23,3 +23,6 @@ In this series, we ara making many apps
 
 - Tic Tac Toe
   image
+
+-SpotifyClone
+image
