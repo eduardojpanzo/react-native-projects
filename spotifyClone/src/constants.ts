@@ -1,6 +1,8 @@
 import {Track} from 'react-native-track-player';
 
-export const playListdata: Track[] = [
+type TrackProps = Track & {id: number};
+
+export const playListdata: TrackProps[] = [
   {
     id: 1,
     title: 'The Blessing',
