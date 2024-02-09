@@ -1,10 +1,29 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Button, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {
+  NativeStackNavigationProp,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../App';
+import {useNavigation} from '@react-navigation/native';
 
-export default function Details() {
+type DetailsProps = NativeStackScreenProps<RootStackParamList, 'Details'>;
+
+export default function Details({route}: DetailsProps) {
+  const {productId} = route.params;
+
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   return (
-    <View>
-      <Text style={styles.smallText}>Details</Text>
+    <View style={styles.container}>
+      <Text style={styles.smallText}>Details{productId}</Text>
+
+      <Button title="Go to Home" onPress={() => navigation.goBack()} />
+
+      <Button
+        title="Go to back to first scren"
+        onPress={() => navigation.popToTop()}
+      />
     </View>
   );
 }
