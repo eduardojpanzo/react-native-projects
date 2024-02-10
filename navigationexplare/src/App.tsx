@@ -26,7 +26,7 @@ function App(): React.JSX.Element {
           name="Details"
           component={Details}
           options={{
-            title: 'Trending Products',
+            title: 'Product',
           }}
         />
       </Stack.Navigator>
