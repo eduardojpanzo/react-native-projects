@@ -4,7 +4,7 @@ import React from 'react';
 export function HomeScreen() {
   return (
     <View>
-      <Text>Home</Text>
+      <Text style={{color: 'red'}}>Home</Text>
       <Text>Home</Text>
       <Text>Home</Text>
     </View>

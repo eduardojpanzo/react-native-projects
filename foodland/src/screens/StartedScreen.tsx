@@ -1,12 +1,82 @@
-import {Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
 export function StartedScreen() {
   return (
-    <View style={{height: 400, width: '100%', backgroundColor: '#00f'}}>
-      <Text style={{color: '#f00'}}>StartedScreen</Text>
+    <View style={styles.container}>
+      <View style={styles.box}>
+        <Text style={[styles.text, styles.title]}>Food Land</Text>
+
+        <View>
+          <Text style={styles.text}>Hungry?</Text>
+          <Text style={styles.text}>Order an Eat</Text>
+        </View>
+      </View>
+
+      <View>
+        <Pressable style={styles.start}>
+          <Text style={styles.text}>Get Started</Text>
+          <View style={styles.iconBox}>
+            <Text style={styles.iconText}>»</Text>
+          </View>
+        </Pressable>
+      </View>
     </View>
   );
 }
 
-// const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#f00',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  box: {
+    flex: 1,
+    width: '80%',
+    maxHeight: 290,
+    maxWidth: 290,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    backgroundColor: '#fffc',
+  },
+  text: {
+    textAlign: 'center',
+    fontSize: 22,
+    color: '#000',
+    fontWeight: '500',
+  },
+  title: {
+    fontSize: 38,
+    fontWeight: '900',
+    marginBottom: 30,
+  },
+  start: {
+    width: '60%',
+    height: 60,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+    marginTop: 250,
+    paddingLeft: 16,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+  },
+  iconBox: {
+    width: 54,
+    height: '98%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+    backgroundColor: '#000',
+  },
+  iconText: {
+    fontSize: 28,
+    lineHeight: 28,
+    textAlign: 'center',
+    color: '#fff',
+  },
+});
