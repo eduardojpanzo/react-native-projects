@@ -1,7 +1,11 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../App';
 
-export function StartedScreen() {
+type StartedProps = NativeStackScreenProps<RootStackParamList>;
+
+export function StartedScreen({navigation}: StartedProps) {
   return (
     <View style={styles.container}>
       <View style={styles.box}>
@@ -14,7 +18,11 @@ export function StartedScreen() {
       </View>
 
       <View>
-        <Pressable style={styles.start}>
+        <Pressable
+          style={styles.start}
+          onPress={() => {
+            navigation.navigate('Home');
+          }}>
           <Text style={styles.text}>Get Started</Text>
           <View style={styles.iconBox}>
             <Text style={styles.iconText}>»</Text>
