@@ -1,35 +1,39 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {ImageBackground, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../App';
+
+import imageBg from '../assets/food.jpeg';
 
 type StartedProps = NativeStackScreenProps<RootStackParamList>;
 
 export function StartedScreen({navigation}: StartedProps) {
   return (
-    <View style={styles.container}>
-      <View style={styles.box}>
-        <Text style={[styles.text, styles.title]}>Food Land</Text>
+    <ImageBackground source={imageBg} resizeMode="cover">
+      <View style={styles.container}>
+        <View style={styles.box}>
+          <Text style={[styles.text, styles.title]}>Food Land</Text>
+
+          <View>
+            <Text style={styles.text}>Hungry?</Text>
+            <Text style={styles.text}>Order an Eat</Text>
+          </View>
+        </View>
 
         <View>
-          <Text style={styles.text}>Hungry?</Text>
-          <Text style={styles.text}>Order an Eat</Text>
+          <Pressable
+            style={styles.start}
+            onPress={() => {
+              navigation.navigate('Home');
+            }}>
+            <Text style={styles.text}>Get Started</Text>
+            <View style={styles.iconBox}>
+              <Text style={styles.iconText}>»</Text>
+            </View>
+          </Pressable>
         </View>
       </View>
-
-      <View>
-        <Pressable
-          style={styles.start}
-          onPress={() => {
-            navigation.navigate('Home');
-          }}>
-          <Text style={styles.text}>Get Started</Text>
-          <View style={styles.iconBox}>
-            <Text style={styles.iconText}>»</Text>
-          </View>
-        </Pressable>
-      </View>
-    </View>
+    </ImageBackground>
   );
 }
 
@@ -37,7 +41,6 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#f00',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
-    backgroundColor: '#fffc',
+    backgroundColor: '#ffffffea',
   },
   text: {
     textAlign: 'center',
