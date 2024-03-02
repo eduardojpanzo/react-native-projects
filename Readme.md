@@ -6,6 +6,11 @@ In this series, we ara making many apps
 
 ## Apps
 
+- Awesome 01
+<p align="center">
+  <img alt="first project" src=".github/first.png" width="160px">
+</p>
+
 - LayoutClone
   image
 
