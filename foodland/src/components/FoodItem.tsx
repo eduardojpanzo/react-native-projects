@@ -1,18 +1,14 @@
-import {Image, ImageSourcePropType, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-type Props = {
-  imgUrl?: ImageSourcePropType;
-  name: string;
-  desc: string;
-  color?: string;
-};
-export function FoodItem({desc, name, imgUrl, color}: Props) {
+export function FoodItem({desc, name, imgUrl, color}: FoodProps) {
   const bgColor = {backgroundColor: color ? color : '#ddffff'};
   return (
     <View style={[styles.container, bgColor]}>
       <View style={styles.imgBox}>
-        <Image style={styles.img} source={imgUrl} resizeMode="center" />
+        {imgUrl && (
+          <Image style={styles.img} source={imgUrl} resizeMode="center" />
+        )}
       </View>
 
       <View>
@@ -25,8 +21,8 @@ export function FoodItem({desc, name, imgUrl, color}: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: 160,
-    height: 260,
+    width: 150,
+    height: 210,
     padding: 20,
     borderRadius: 16,
     justifyContent: 'space-between',
@@ -42,14 +38,14 @@ const styles = StyleSheet.create({
     maxHeight: '100%',
   },
   name: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: '700',
     textAlign: 'center',
     color: '#111',
   },
   desc: {
-    fontSize: 16,
-    fontWeight: '400',
+    fontSize: 12,
+    fontWeight: '500',
     textAlign: 'center',
     color: '#111',
   },

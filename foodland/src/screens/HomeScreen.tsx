@@ -2,15 +2,14 @@ import {StyleSheet, Text, TextInput, View} from 'react-native';
 import React from 'react';
 import {Search} from 'lucide-react-native';
 
-import donutImg from '../assets/donut.png';
-import {FoodItem} from '../components/FoodItem';
+import FoodList from '../components/FoodList';
 
 export function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.textBox}>
         <Text style={styles.title}>Hungry?</Text>
-        <Text style={styles.title}>Order an Eat</Text>
+        <Text style={styles.title}>Order n Eat</Text>
       </View>
 
       <View style={styles.inputContainer}>
@@ -25,23 +24,19 @@ export function HomeScreen() {
         <Search color={'black'} />
       </View>
 
-      <View>
-        <FoodItem desc="starting from R$ 400" name="Donut" imgUrl={donutImg} />
-      </View>
+      <FoodList />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
-    borderColor: 'red',
     width: '100%',
     height: '100%',
     backgroundColor: '#fff',
   },
   textBox: {
-    width: '85%',
+    width: '90%',
     alignSelf: 'center',
     paddingTop: 10,
     marginBottom: 20,
@@ -53,7 +48,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   inputContainer: {
-    width: '85%',
+    width: '90%',
     alignSelf: 'center',
     paddingHorizontal: 10,
     paddingVertical: 5,

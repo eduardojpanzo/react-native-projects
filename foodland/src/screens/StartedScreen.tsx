@@ -16,7 +16,7 @@ export function StartedScreen({navigation}: StartedProps) {
 
           <View>
             <Text style={styles.text}>Hungry?</Text>
-            <Text style={styles.text}>Order an Eat</Text>
+            <Text style={styles.text}>Order n Eat</Text>
           </View>
         </View>
 
