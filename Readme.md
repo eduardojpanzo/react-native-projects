@@ -12,22 +12,56 @@ In this series, we ara making many apps
 </p>
 
 - LayoutClone
-  image
+<p align="center">
+  <img alt="first project" src=".github/layout01.png" width="160px">
+  <img alt="first project" src=".github/layout02.png" width="160px">
+</p>
 
 - BackGround color change
-  image
+<p align="center">
+  <img alt="first project" src=".github/changeBg.png" width="160px">
+</p>
 
 - Converter Currency
-  image
+  <p align="center">
+  <img alt="first project" src=".github/currecy.png" width="160px">
+</p>
 
 - Generate Password
-  image
+<p align="center">
+  <img alt="first project" src=".github/hash.png" width="160px">
+</p>
 
 - Roll the Dice
-  image
+<p align="center">
+  <img alt="first project" src=".github/roll.png" width="160px">
+</p>
 
 - Tic Tac Toe
-  image
+<p align="center">
+  <img alt="first project" src=".github/tictacotoe.png" width="160px">
+</p>
 
--SpotifyClone
-image
+- SpotifyClone
+<p align="center">
+  <img alt="first project" src=".github/player.png" width="160px">
+</p>
+
+- Navigation explore
+<p align="center">
+  <img alt="first project" src=".github/navigation.png" width="160px">
+</p>
+
+- Shopping
+<p align="center">
+  <img alt="first project" src=".github/shop01.png" width="160px">
+  <img alt="first project" src=".github/shop02.png" width="160px">
+</p>
+
+- made for me:
+- foodland
+<p align="center">
+  <img alt="first project" src=".github/foodland.png" width="160px">
+  <img alt="first project" src=".github/foodland02.png" width="160px">
+</p>
+
