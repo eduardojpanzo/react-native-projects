@@ -1,67 +1,16 @@
 # Learning React - nactive
 
-I am learning react-nactive with hetech, you can learn it too free on [link].
+I managed to make my first apps in react-native, following the Hitesh [Choudhary](https://www.youtube.com/@HiteshChoudharydotcom) course sponsored by [hashnode](https://hashnode.com/), it's really good [React Native Mastery with 10 apps](https://www.youtube.com/playlist?list=PLRAV69dS1uWSjBBJ-egNNOd4mdblt1P4c)
 
-In this series, we ara making many apps
+# 10 apps
 
-## Apps
+|![Awesome 01](.github/first.png)[Awesome 01](./Awesome01/) | ![LayoutClone](.github/layout01.png)[LayoutClone](./layoutcard/) | ![BackGround color change](.github/changeBg.png)[BackGround color change](./bgChaanger/) | ![Converter Currency](.github/currecy.png)[Converter Currency](./currencyconverter/) |![Generate Password](.github/hash.png)[Generate Password](./generateHash/)|
+|:--:|:---:|:---:|:---:|:--:|
 
-- Awesome 01
-<p align="center">
-  <img alt="first project" src=".github/first.png" width="160px">
-</p>
+| ![Roll the Dice](.github/roll.png)[Roll the Dice](./rollthedice/) | ![Tic Tac Toe](.github/tictacotoe.png)[Tic Tac Toe](./tictactoe/)| ![SpotifyClone](.github/player.png)[SpotifyClone](./spotifyClone/) | ![Navigation explore](.github/navigation.png)[Navigation explore](./navigationexplare/) | ![Shopping](.github/shop01.png) [Shopping](./shopping10/)|
+|:---:|:--:|:--:|:--:|:--:|
 
-- LayoutClone
-<p align="center">
-  <img alt="first project" src=".github/layout01.png" width="160px">
-  <img alt="first project" src=".github/layout02.png" width="160px">
-</p>
-
-- BackGround color change
-<p align="center">
-  <img alt="first project" src=".github/changeBg.png" width="160px">
-</p>
-
-- Converter Currency
-  <p align="center">
-  <img alt="first project" src=".github/currecy.png" width="160px">
-</p>
-
-- Generate Password
-<p align="center">
-  <img alt="first project" src=".github/hash.png" width="160px">
-</p>
-
-- Roll the Dice
-<p align="center">
-  <img alt="first project" src=".github/roll.png" width="160px">
-</p>
-
-- Tic Tac Toe
-<p align="center">
-  <img alt="first project" src=".github/tictacotoe.png" width="160px">
-</p>
-
-- SpotifyClone
-<p align="center">
-  <img alt="first project" src=".github/player.png" width="160px">
-</p>
-
-- Navigation explore
-<p align="center">
-  <img alt="first project" src=".github/navigation.png" width="160px">
-</p>
-
-- Shopping
-<p align="center">
-  <img alt="first project" src=".github/shop01.png" width="160px">
-  <img alt="first project" src=".github/shop02.png" width="160px">
-</p>
-
-- made for me:
-- foodland
-<p align="center">
-  <img alt="first project" src=".github/foodland.png" width="160px">
-  <img alt="first project" src=".github/foodland02.png" width="160px">
-</p>
-
+- The following apps have been made and will be made, based on everything I learned, research, reading and lots of codes...
+- 
+| <img alt="first project" src=".github/foodland.png" width="160px"><img alt="first project" src=".github/foodland02.png" width="160px"> <br> [foodland](./foodland/)|
+|:--:|
