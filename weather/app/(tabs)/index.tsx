@@ -8,11 +8,12 @@ import { CurrentTemperature } from "@/components/CurrentTemperature";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1d3140" }}
+      headerBackgroundColor={{ light: "#A1CEDC", dark: "#151718" }}
       headerImage={
         <Image
           source={{ uri: "https://openweathermap.org/img/wn/02d@4x.png" }}
@@ -25,11 +26,46 @@ export default function HomeScreen() {
         Broken Clouds
       </ThemedText>
 
-      <ThemedView>{/* definir aqui o velocidade do vento */}</ThemedView>
+      {/* definir aqui o velocidade do vento */}
+      <ThemedView style={styles.sectionResume}>
+        <ThemedView style={styles.resumeItem}>
+          <ThemedText>
+            <MaterialCommunityIcons size={28} name="waves" />
+          </ThemedText>
+          <ThemedView style={styles.resumetexts}>
+            <ThemedText>88%</ThemedText>
+            <ThemedText>Humidity</ThemedText>
+          </ThemedView>
+        </ThemedView>
+
+        <ThemedView style={styles.resumeItem}>
+          <ThemedText>
+            <MaterialCommunityIcons name="weather-windy" size={28} />
+          </ThemedText>
+          <ThemedView style={styles.resumetexts}>
+            <ThemedText>0km/h</ThemedText>
+            <ThemedText>wind speed</ThemedText>
+          </ThemedView>
+        </ThemedView>
+      </ThemedView>
 
       {/* listagem do tempo de hoje em horas do dia */}
-
-      {/* modificar os tab: Home -> today explore-> 3 or 7 day resume */}
+      <ThemedView style={styles.sectionTimes}>
+        {Array.from({ length: 7 }).map((_, i) => (
+          <ThemedView key={i}>
+            <ThemedView style={styles.timeTemp}>
+              <ThemedText>-6</ThemedText>
+              <ThemedText style={{ verticalAlign: "top", fontSize: 10 }}>
+                °C
+              </ThemedText>
+            </ThemedView>
+            <ThemedText>
+              <MaterialCommunityIcons size={32} name="weather-partly-cloudy" />
+            </ThemedText>
+            <ThemedText>8:00</ThemedText>
+          </ThemedView>
+        ))}
+      </ThemedView>
     </ParallaxScrollView>
   );
 }
@@ -46,5 +82,27 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: -30,
   },
-  resume: {},
+  sectionResume: {
+    marginTop: 50,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  resumeItem: {
+    flexDirection: "row",
+    gap: 4,
+    alignItems: "center",
+  },
+  resumetexts: {},
+  sectionTimes: {
+    marginTop: 30,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  timesItem: {},
+  timeTemp: {
+    flexDirection: "row",
+  },
+  timeIcon: {},
 });
