@@ -1,7 +1,3 @@
-// https://api.openweathermap.org/data/2.5/forecast?q=luanda&appid=1cf46c27881acf57163784133219bf77&cnt=56&lang=pt_br
-
-//https://openweathermap.org/img/wn/02d@4x.png
-
 import { Image, StyleSheet, Platform } from "react-native";
 
 import { CurrentTemperature } from "@/components/CurrentTemperature";
@@ -9,6 +5,7 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { ListTimesToday } from "@/components/ListTimesToday";
 
 export default function HomeScreen() {
   return (
@@ -49,23 +46,7 @@ export default function HomeScreen() {
         </ThemedView>
       </ThemedView>
 
-      {/* listagem do tempo de hoje em horas do dia */}
-      <ThemedView style={styles.sectionTimes}>
-        {Array.from({ length: 7 }).map((_, i) => (
-          <ThemedView key={i}>
-            <ThemedView style={styles.timeTemp}>
-              <ThemedText>-6</ThemedText>
-              <ThemedText style={{ verticalAlign: "top", fontSize: 10 }}>
-                °C
-              </ThemedText>
-            </ThemedView>
-            <ThemedText>
-              <MaterialCommunityIcons size={32} name="weather-partly-cloudy" />
-            </ThemedText>
-            <ThemedText>8:00</ThemedText>
-          </ThemedView>
-        ))}
-      </ThemedView>
+      <ListTimesToday />
     </ParallaxScrollView>
   );
 }
