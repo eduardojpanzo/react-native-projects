@@ -6,8 +6,34 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ListTimesToday } from "@/components/ListTimesToday";
+import { useEffect, useState } from "react";
+import { WeatherData } from "@/types";
+import { convertKelvinToCelsius } from "@/utils/convert";
+import { Temperature } from "@/components/Temperature";
 
 export default function HomeScreen() {
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState<WeatherData>();
+
+  const getWeatherData = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.EXPO_PUBLIC_API_URL}?q=luanda&appid=${process.env.EXPO_PUBLIC_API_KEY}&cnt=56&lang=pt_br`
+      );
+      const json: WeatherData = await response.json();
+      setData(json);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getWeatherData();
+  }, []);
+
+  const firstData = data?.list[0];
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#151718" }}
@@ -18,9 +44,19 @@ export default function HomeScreen() {
         />
       }
     >
-      <CurrentTemperature value="0" />
+      <ThemedText type="subtitle" style={styles.city}>
+        {data?.city.name}
+      </ThemedText>
+      <CurrentTemperature
+        value={`${convertKelvinToCelsius(firstData?.main.temp ?? 296.37)}`}
+      />
+      <Temperature
+        label={"Feels like"}
+        value={convertKelvinToCelsius(firstData?.main.feels_like ?? 296.37)}
+      />
+
       <ThemedText type="subtitle" style={styles.weatherName}>
-        Broken Clouds
+        {firstData?.weather[0].description}
       </ThemedText>
 
       {/* definir aqui o velocidade do vento */}
@@ -30,7 +66,7 @@ export default function HomeScreen() {
             <MaterialCommunityIcons size={28} name="waves" />
           </ThemedText>
           <ThemedView style={styles.resumetexts}>
-            <ThemedText>88%</ThemedText>
+            <ThemedText>{firstData?.main.humidity}%</ThemedText>
             <ThemedText>Humidity</ThemedText>
           </ThemedView>
         </ThemedView>
@@ -40,7 +76,7 @@ export default function HomeScreen() {
             <MaterialCommunityIcons name="weather-windy" size={28} />
           </ThemedText>
           <ThemedView style={styles.resumetexts}>
-            <ThemedText>0km/h</ThemedText>
+            <ThemedText>{firstData?.wind.speed} km/h</ThemedText>
             <ThemedText>wind speed</ThemedText>
           </ThemedView>
         </ThemedView>
@@ -59,7 +95,24 @@ const styles = StyleSheet.create({
     right: 0,
     position: "absolute",
   },
+  city: {
+    fontWeight: "400",
+    fontSize: 20,
+    textAlign: "center",
+    marginTop: -25,
+    marginBottom: 25,
+  },
+  feels: {
+    display: "flex",
+    alignItems: "center",
+    fontWeight: "300",
+    fontSize: 12,
+    textAlign: "center",
+    marginTop: -30,
+    marginBottom: 30,
+  },
   weatherName: {
+    textTransform: "capitalize",
     textAlign: "center",
     marginTop: -30,
   },
