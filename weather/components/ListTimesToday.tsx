@@ -3,23 +3,31 @@ import React from "react";
 import { ThemedView } from "./ThemedView";
 import { ThemedText } from "./ThemedText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-export function ListTimesToday() {
+import { WeatherDetail } from "@/types";
+import { convertKelvinToCelsius } from "@/utils/convert";
+import { WeatherIcon } from "./WheatherIcon";
+import { getDayOrNightIcon, getTime } from "@/utils/get";
+interface Props {
+  data: WeatherDetail[] | undefined;
+}
+export function ListTimesToday({ data }: Props) {
   return (
     <ThemedView style={styles.sectionTimes}>
       <ScrollView horizontal style={styles.scroll}>
-        {Array.from({ length: 7 }).map((_, i) => (
-          <ThemedView key={i} style={styles.timesItem}>
+        {data?.map((item, i) => (
+          <ThemedView key={item.dt} style={styles.timesItem}>
             <ThemedView style={styles.timeTemp}>
-              <ThemedText>{Math.floor(Math.random() * 20) - 1}</ThemedText>
+              <ThemedText>
+                {convertKelvinToCelsius(item?.main.temp ?? 296.37)}
+              </ThemedText>
               <ThemedText style={{ verticalAlign: "top", fontSize: 10 }}>
                 °C
               </ThemedText>
             </ThemedView>
-            <ThemedText>
-              <MaterialCommunityIcons size={32} name="weather-partly-cloudy" />
-            </ThemedText>
-            <ThemedText>{Math.floor(Math.random() * 12) + 0}:00</ThemedText>
+            <WeatherIcon
+              iconName={getDayOrNightIcon(item.weather[0].icon, item.dt_txt)}
+            />
+            <ThemedText>{getTime(item.dt_txt)}</ThemedText>
           </ThemedView>
         ))}
       </ScrollView>

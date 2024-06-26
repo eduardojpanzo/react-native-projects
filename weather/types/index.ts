@@ -18,7 +18,7 @@ export interface WeatherData {
   };
 }
 
-interface WeatherDetail {
+export interface WeatherDetail {
   dt: number;
   main: {
     temp: number;

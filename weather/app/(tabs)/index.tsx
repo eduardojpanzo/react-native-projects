@@ -1,37 +1,16 @@
-import { Image, StyleSheet, Platform } from "react-native";
-
+import { ActivityIndicator, Image, StyleSheet, View } from "react-native";
 import { CurrentTemperature } from "@/components/CurrentTemperature";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ListTimesToday } from "@/components/ListTimesToday";
-import { useEffect, useState } from "react";
-import { WeatherData } from "@/types";
-import { convertKelvinToCelsius } from "@/utils/convert";
+import { convertKelvinToCelsius, convertWindSpeed } from "@/utils/convert";
 import { Temperature } from "@/components/Temperature";
+import { useWeatherData } from "@/hooks/useWeatherData";
 
 export default function HomeScreen() {
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState<WeatherData>();
-
-  const getWeatherData = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.EXPO_PUBLIC_API_URL}?q=luanda&appid=${process.env.EXPO_PUBLIC_API_KEY}&cnt=56&lang=pt_br`
-      );
-      const json: WeatherData = await response.json();
-      setData(json);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getWeatherData();
-  }, []);
+  const { data, isLoading } = useWeatherData();
 
   const firstData = data?.list[0];
   return (
@@ -44,45 +23,58 @@ export default function HomeScreen() {
         />
       }
     >
-      <ThemedText type="subtitle" style={styles.city}>
-        {data?.city.name}
-      </ThemedText>
-      <CurrentTemperature
-        value={`${convertKelvinToCelsius(firstData?.main.temp ?? 296.37)}`}
-      />
-      <Temperature
-        label={"Feels like"}
-        value={convertKelvinToCelsius(firstData?.main.feels_like ?? 296.37)}
-      />
-
-      <ThemedText type="subtitle" style={styles.weatherName}>
-        {firstData?.weather[0].description}
-      </ThemedText>
-
-      {/* definir aqui o velocidade do vento */}
-      <ThemedView style={styles.sectionResume}>
-        <ThemedView style={styles.resumeItem}>
-          <ThemedText>
-            <MaterialCommunityIcons size={28} name="waves" />
+      {isLoading ? (
+        <ActivityIndicator size={"large"} color={"#ddd"} />
+      ) : (
+        <View>
+          <ThemedText type="subtitle" style={styles.city}>
+            {data?.city.name}
           </ThemedText>
-          <ThemedView style={styles.resumetexts}>
-            <ThemedText>{firstData?.main.humidity}%</ThemedText>
-            <ThemedText>Humidity</ThemedText>
-          </ThemedView>
-        </ThemedView>
+          <CurrentTemperature
+            value={`${convertKelvinToCelsius(firstData?.main.temp ?? 296.37)}`}
+          />
+          <Temperature
+            label={"Feels like"}
+            containerStyle={{
+              justifyContent: "center",
+              marginTop: -20,
+              marginBottom: 20,
+            }}
+            value={convertKelvinToCelsius(firstData?.main.feels_like ?? 296.37)}
+          />
 
-        <ThemedView style={styles.resumeItem}>
-          <ThemedText>
-            <MaterialCommunityIcons name="weather-windy" size={28} />
+          <ThemedText type="subtitle" style={styles.weatherName}>
+            {firstData?.weather[0].description}
           </ThemedText>
-          <ThemedView style={styles.resumetexts}>
-            <ThemedText>{firstData?.wind.speed} km/h</ThemedText>
-            <ThemedText>wind speed</ThemedText>
-          </ThemedView>
-        </ThemedView>
-      </ThemedView>
 
-      <ListTimesToday />
+          {/* definir aqui o velocidade do vento */}
+          <ThemedView style={styles.sectionResume}>
+            <ThemedView style={styles.resumeItem}>
+              <ThemedText>
+                <MaterialCommunityIcons size={28} name="waves" />
+              </ThemedText>
+              <ThemedView style={styles.resumetexts}>
+                <ThemedText>{firstData?.main.humidity}%</ThemedText>
+                <ThemedText>Humidity</ThemedText>
+              </ThemedView>
+            </ThemedView>
+
+            <ThemedView style={styles.resumeItem}>
+              <ThemedText>
+                <MaterialCommunityIcons name="weather-windy" size={28} />
+              </ThemedText>
+              <ThemedView style={styles.resumetexts}>
+                <ThemedText>
+                  {convertWindSpeed(firstData?.wind.speed ?? 1.64)}
+                </ThemedText>
+                <ThemedText>wind speed</ThemedText>
+              </ThemedView>
+            </ThemedView>
+          </ThemedView>
+
+          <ListTimesToday data={data?.list.slice(0, 9)} />
+        </View>
+      )}
     </ParallaxScrollView>
   );
 }
@@ -100,7 +92,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     marginTop: -25,
-    marginBottom: 25,
+    marginBottom: 10,
   },
   feels: {
     display: "flex",
@@ -117,7 +109,7 @@ const styles = StyleSheet.create({
     marginTop: -30,
   },
   sectionResume: {
-    marginTop: 50,
+    marginTop: 20,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
