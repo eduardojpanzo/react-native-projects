@@ -1,4 +1,5 @@
 import { WeatherData } from "@/types";
+import { getDayOrNightIcon } from "@/utils/get";
 import { useEffect, useState } from "react";
 
 export function useWeatherData() {
@@ -39,7 +40,15 @@ export function useWeatherData() {
     })
   );
 
+  const firstData = data?.list[0];
+  const iconName = getDayOrNightIcon(
+    firstData?.weather[0].icon ?? "01d",
+    firstData?.dt_txt ?? "2024-01-01 00:00:00"
+  );
+
   return {
+    iconName,
+    firstData,
     data,
     isLoading,
     firstDateForEachdate,

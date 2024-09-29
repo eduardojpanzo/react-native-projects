@@ -4,8 +4,12 @@ import { ThemedView } from "@/components/ThemedView";
 import { CurrentTemperature } from "@/components/CurrentTemperature";
 import { ThemedText } from "@/components/ThemedText";
 import { Temperature } from "@/components/Temperature";
+import { useWeatherData } from "@/hooks/useWeatherData";
+import { convertKelvinToCelsius, dateToWeekDay } from "@/utils/convert";
 
 export default function TabTwoScreen() {
+  const { firstDateForEachdate, firstData } = useWeatherData();
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
@@ -16,24 +20,38 @@ export default function TabTwoScreen() {
             source={require("@/assets/images/adaptive-icon.png")}
           />
           <ThemedView style={styles.headerResume}>
-            <CurrentTemperature value="0" />
+            <CurrentTemperature
+              value={convertKelvinToCelsius(
+                firstData?.main.temp ?? 0
+              ).toString()}
+            />
             <ThemedText type="subtitle" style={styles.weatherName}>
-              Broken Clouds
+              {firstData?.weather[0].description}
             </ThemedText>
           </ThemedView>
         </ThemedView>
       }
     >
       <ThemedView style={styles.weeklyList}>
-        {Array.from({ length: 7 }).map((_, i) => (
+        {firstDateForEachdate?.map((item, i) => (
           <View key={i} style={styles.weekItem}>
-            <ThemedText style={styles.weekItemDay}>Wed</ThemedText>
-            <ThemedText style={styles.weekItemWeather}>light rain</ThemedText>
+            <ThemedText style={styles.weekItemDay}>
+              {dateToWeekDay(item?.dt_txt).slice(0, 3)}
+            </ThemedText>
+            <ThemedText style={styles.weekItemWeather}>
+              {item?.weather[0].description}
+            </ThemedText>
             <View>
-              <Temperature value={22} w="lg" />
+              <Temperature
+                value={convertKelvinToCelsius(item?.main.temp ?? 0)}
+                w="lg"
+              />
               <View style={styles.weekItemTempFeels}>
-                <ThemedText style={{ fontSize: 12 }}>Feels</ThemedText>
-                <Temperature value={33} w="sm" />
+                <ThemedText style={{ fontSize: 12 }}>parece </ThemedText>
+                <Temperature
+                  value={convertKelvinToCelsius(item?.main.feels_like ?? 0)}
+                  w="sm"
+                />
               </View>
             </View>
           </View>

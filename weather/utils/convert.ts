@@ -12,3 +12,25 @@ export function metersToKilometers(visibilityInMeters: number): string {
   const visibilityInKilometers = visibilityInMeters / 1000;
   return `${visibilityInKilometers.toFixed(0)} km`;
 }
+
+export function dateToWeekDay(dateTime = "2024-01-01 00:00:00") {
+  const weekdays = [
+    "Domingo",
+    "Segunda-feira",
+    "Terça-feira",
+    "Quarta-feira",
+    "Quinta-feira",
+    "Sexta-feira",
+    "Sábado",
+  ];
+
+  const date = new Date(dateTime);
+
+  if (isNaN(date.getTime())) {
+    throw new Error("Data inválida");
+  }
+
+  const index = date.getDay();
+
+  return weekdays[index];
+}
