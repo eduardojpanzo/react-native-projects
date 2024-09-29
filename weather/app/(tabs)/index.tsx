@@ -8,17 +8,25 @@ import { ListTimesToday } from "@/components/ListTimesToday";
 import { convertKelvinToCelsius, convertWindSpeed } from "@/utils/convert";
 import { Temperature } from "@/components/Temperature";
 import { useWeatherData } from "@/hooks/useWeatherData";
+import { getDayOrNightIcon } from "@/utils/get";
 
 export default function HomeScreen() {
   const { data, isLoading } = useWeatherData();
 
   const firstData = data?.list[0];
+  const iconName = getDayOrNightIcon(
+    firstData?.weather[0].icon ?? "02d",
+    firstData?.dt_txt ?? "2024-09-29 21:00:00"
+  );
+
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#151718" }}
+      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1a1a1a" }}
       headerImage={
         <Image
-          source={{ uri: "https://openweathermap.org/img/wn/02d@4x.png" }}
+          source={{
+            uri: `https://openweathermap.org/img/wn/${iconName}@4x.png`,
+          }}
           style={styles.weatherIcon}
         />
       }
@@ -34,7 +42,8 @@ export default function HomeScreen() {
             value={`${convertKelvinToCelsius(firstData?.main.temp ?? 296.37)}`}
           />
           <Temperature
-            label={"Feels like"}
+            //slabel={"Feels like"}
+            label={"parece"}
             containerStyle={{
               justifyContent: "center",
               marginTop: -20,
@@ -55,7 +64,7 @@ export default function HomeScreen() {
               </ThemedText>
               <ThemedView style={styles.resumetexts}>
                 <ThemedText>{firstData?.main.humidity}%</ThemedText>
-                <ThemedText>Humidity</ThemedText>
+                <ThemedText>Umidade</ThemedText>
               </ThemedView>
             </ThemedView>
 
@@ -67,7 +76,7 @@ export default function HomeScreen() {
                 <ThemedText>
                   {convertWindSpeed(firstData?.wind.speed ?? 1.64)}
                 </ThemedText>
-                <ThemedText>wind speed</ThemedText>
+                <ThemedText>velocidade do vento</ThemedText>
               </ThemedView>
             </ThemedView>
           </ThemedView>

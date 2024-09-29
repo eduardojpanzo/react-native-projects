@@ -18,7 +18,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Today",
+          title: "Hoje",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "list" : "list-outline"}

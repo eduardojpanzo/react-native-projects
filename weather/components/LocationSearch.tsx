@@ -9,7 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 export function LocationSearch() {
   const color = useThemeColor({}, "text");
 
-  const [text, onChangeText] = React.useState("Useless Text");
+  const [text, onChangeText] = React.useState("Luanda");
   return (
     <ThemedView style={styles.container}>
       <Ionicons
